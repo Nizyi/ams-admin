@@ -11,11 +11,10 @@ class Parser:
         self.init_database()
 
     def init_database(self):
-        """Initialise la base de données si elle n'existe pas déjà"""
+
         conn = sqlite3.connect(self.db_path)
         cursor = conn.cursor()
 
-        # Création de la table alertes
         cursor.execute('''
         CREATE TABLE IF NOT EXISTS alertes (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -150,10 +149,9 @@ class Parser:
             return None
 
 if __name__ == "__main__":
-    # Création d'une instance de la classe Parser
+
     parser = Parser()
     
-    # Menu interactif simple
     while True:
         print("\n===== Gestionnaire d'alertes CERT-FR =====")
         print("1. Mettre à jour les alertes")

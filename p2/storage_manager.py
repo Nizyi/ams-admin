@@ -7,12 +7,9 @@ import os
 
 class StorageManager:
     def __init__(self):
-        self.name= "bdd.sqlite"
+        self.name= "/home/nas-wks01/users/uapv2402658/Documents/L2/ams admin/ams-admin/p2/bdd.sqlite"
         self.limit = 1
-        self.init_database()
-    
-    def init_database(self):
-
+        
         conn = sqlite3.connect(self.name)
         cursor = conn.cursor()
         
@@ -27,7 +24,6 @@ class StorageManager:
         
         conn.commit()
         conn.close()
-        print(f"Bdd {self.name} bien initialisée.")
 
     def insert(self, sonde_name, value):
         try:
@@ -48,7 +44,7 @@ class StorageManager:
             conn.close()
             print(f"Données bien insérées dans {sonde_name}.")
         except Exception as e:
-            print(f"Erreur lors de l'insertion des données dans {sonde_name}.")
+            print(f"Erreur lors de l'insertion des données dans {sonde_name} {e}.")
 
     def old_delete(self):
 
@@ -160,5 +156,33 @@ class Sondes :
 
             return data
         except Exception as e:
-            print(f"script {sonde_name} non exécuté")
+            print(f"script {sonde_name} non exécuté : {e}")
 
+if __name__ == "__main__":
+
+    import sys
+    
+    
+    print("\nList sondes:")
+    sondes = ['cpu.sh', 'ram.py', 'disk.py']
+    test = Sondes(sondes)
+    for sonde in sondes:
+        print(f" - {sonde}") 
+    
+    """
+    print("\nall sondes:")
+    results = test.get_all_sondes()
+    for sonde_name, data in results.items():
+        print(f"\n{sonde_name} result:")
+        print(json.dumps(data, indent=2))
+    
+    """
+    """
+    if sondes:
+        test_sonde = sondes[0]
+        print(f"\n1 sonde '{test_sonde}':")
+        result = test.execute_sonde(test_sonde)
+        if result:
+            print(json.dumps(result, indent=2))
+        else:
+            print("No result returned") """
