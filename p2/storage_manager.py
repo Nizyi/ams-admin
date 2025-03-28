@@ -7,7 +7,7 @@ import os
 
 class StorageManager:
     def __init__(self):
-        self.name= "/home/nas-wks01/users/uapv2402658/Documents/L2/ams admin/ams-admin/p2/bdd.sqlite"
+        self.name= "alertes.sqlite"
         self.limit = 1
         
         conn = sqlite3.connect(self.name)
