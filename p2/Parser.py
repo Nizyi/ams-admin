@@ -86,7 +86,7 @@ class Parser:
                 try:
                     cursor.execute(
                         "INSERT OR IGNORE INTO alertes (reference, date, title, last_update) VALUES (?, ?, ?, ?)",
-                        (alert['reference'], alert['date'], alert['titre'], datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+                        (alert['reference'], alert['date'], alert['title'], datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
                     )
 
                 except Exception as e:
