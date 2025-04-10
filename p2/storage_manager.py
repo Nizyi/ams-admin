@@ -132,6 +132,9 @@ class Sondes :
                     json_data = json.dumps(data) 
                     self.bdd.insert(sonde_name, json_data)
                     print(f"données de {sonde_name} insérées.")
+                else:
+                    all_data[sonde_name] = None
+                    print(f"Pas de données pour {sonde_name}.")
             
             return all_data
         except Exception as e:
@@ -162,22 +165,22 @@ if __name__ == "__main__":
 
     import sys
     
-    
+    """
     print("\nList sondes:")
-    sondes = ['cpu.sh', 'ram.py', 'disk.py']
+    sondes = ['cpu.py', 'ram.py', 'disk.py']
     test = Sondes(sondes)
     for sonde in sondes:
         print(f" - {sonde}") 
     
-    """
+
     print("\nall sondes:")
     results = test.get_all_sondes()
     for sonde_name, data in results.items():
         print(f"\n{sonde_name} result:")
         print(json.dumps(data, indent=2))
     
-    """
-    """
+
+
     if sondes:
         test_sonde = sondes[0]
         print(f"\n1 sonde '{test_sonde}':")
@@ -185,4 +188,7 @@ if __name__ == "__main__":
         if result:
             print(json.dumps(result, indent=2))
         else:
-            print("No result returned") """
+            print("No result returned") 
+    
+
+    """

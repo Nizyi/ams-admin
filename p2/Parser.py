@@ -127,6 +127,7 @@ class Parser:
         try:
             conn = sqlite3.connect(self.db_path)
             cursor = conn.cursor()
+            self.update_alerts()
             
             cursor.execute(
                 "SELECT reference, date, title FROM alertes ORDER BY date ASC LIMIT 1"
