@@ -2,12 +2,13 @@ import requests
 from bs4 import BeautifulSoup
 import sqlite3
 from datetime import datetime
+import os
 
 
 class Parser:
 
-    def __init__(self, db_path="cert_alertes.sqlite"):
-        self.db_path = db_path
+    def __init__(self, db_name="cert_alertes.sqlite"):
+        self.db_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), db_name)
         self.init_database()
 
     def init_database(self):

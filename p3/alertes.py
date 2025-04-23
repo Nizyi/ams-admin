@@ -16,8 +16,8 @@ from p2.storage_manager import Sondes
 
 class Alertes:
     def __init__(self):
-        self.storage_manager = StorageManager()
-        self.parser = Parser()
+        self.storage_manager = StorageManager(db_name="alertes.sqlite")
+        self.parser = Parser(db_name="cert_alertes.sqlite")
         self.sonde_list =sondes = ["cpu.py", "ram.py", "disk.py"]
         self.Sondes = Sondes(self.sonde_list)
         self.last_email_sent = None
@@ -142,9 +142,14 @@ class GraphGenerator:
     
     def __init__(self, db_name="alertes.sqlite"):
 
-        self.db_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), db_name)
+        self.db_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'p2', db_name)
         self.sondes=["cpu", "ram", "disk"] 
         self.limit=20
+
+        self.output_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'p4', 'static')
+        
+        if not os.path.exists(self.output_dir):
+            os.makedirs(self.output_dir)
         
     
     def get_sonde_data(self, sonde_name, limit):
@@ -211,6 +216,7 @@ class GraphGenerator:
                 plt.title('Disk Usage')
                 plt.ylabel('Disk Usage (%)')
                 plt.ylim(0, 100)
+
             
             plt.xlabel('Time')
             plt.grid(True, alpha=0.3)
@@ -219,8 +225,8 @@ class GraphGenerator:
             plt.gcf().autofmt_xdate()
             formatter = mdates.DateFormatter('%Y-%m-%d %H:%M')
             plt.gca().xaxis.set_major_formatter(formatter)
-            
-            plt.show()
+
+            plt.savefig(f'{self.output_dir}/{sonde_name}_usage.png')
             
             plt.close()
             return None
@@ -239,6 +245,7 @@ class GraphGenerator:
                 graph_paths.append(graph_path)
         
         return graph_paths
+    
     def set_limit(self, limit):
         self.limit = limit
         print(f"Limit fixé à {limit}.")
@@ -246,10 +253,29 @@ class GraphGenerator:
 
 
 
-if __name__ == "__main__":
+def main():
+
+    import argparse
+
+    parser = argparse.ArgumentParser(description="alertes")
+    parser.add_argument("--check", action="store_true")
+    args = parser.parse_args()
+
     alertes = Alertes()
-    alertes.crisis_check()
 
-    graph_generator = GraphGenerator()
-    graph_generator.generate_all_graphs()
+    if args.check:
+        alertes.crisis_check()
+        return
 
+    try:
+        while True:
+
+            alertes.crisis_check()
+            time.sleep(30)
+
+    except KeyboardInterrupt:
+        print("Arrêt du système d'alertes")
+        print("Système d'alertes arrêté.")
+
+if __name__ == "__main__":
+    main()

@@ -3,11 +3,12 @@ import json
 import subprocess
 from datetime import datetime
 import os
+import time
 
 
 class StorageManager:
-    def __init__(self):
-        self.name= "alertes.sqlite"
+    def __init__(self, db_name="alertes.sqlite"):
+        self.name= os.path.join(os.path.dirname(os.path.abspath(__file__)), db_name)
         self.limit = 1
         
         conn = sqlite3.connect(self.name)
@@ -115,7 +116,7 @@ class Sondes :
         self.sondes = sondes  
         self.p1_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'p1')
 
-    def get_all_sondes(self):
+    def update_all_sondes(self):
         try:
             all_data = {}
             
@@ -135,10 +136,33 @@ class Sondes :
                 else:
                     all_data[sonde_name] = None
                     print(f"Pas de données pour {sonde_name}.")
+            print(all_data)
             
-            return all_data
+            return {}
         except Exception as e:
             print(f"Erreur lors de l'exécution des sondes")
+            return {}
+        
+    def get_all_sondes(self):
+        self.update_all_sondes()
+        #get from database
+        try:
+            conn = sqlite3.connect(self.bdd.name)
+            cursor = conn.cursor()
+            
+            cursor.execute("SELECT sonde_name, value FROM sonde")
+            results = cursor.fetchall()
+            
+            all_data = {}
+            for row in results:
+                sonde_name = row[0]
+                value = json.loads(row[1])
+                all_data[sonde_name] = value
+            
+            conn.close()
+            return all_data
+        except Exception as e:
+            print(f"Erreur lors de la récupération des données: {e}")
             return {}
 
     def execute_sonde(self, sonde_name):
@@ -161,34 +185,30 @@ class Sondes :
         except Exception as e:
             print(f"script {sonde_name} non exécuté : {e}")
 
-if __name__ == "__main__":
 
+def main():
     import sys
-    
-    """
-    print("\nList sondes:")
-    sondes = ['cpu.py', 'ram.py', 'disk.py']
-    test = Sondes(sondes)
-    for sonde in sondes:
-        print(f" - {sonde}") 
-    
+    import argparse
 
-    print("\nall sondes:")
-    results = test.get_all_sondes()
-    for sonde_name, data in results.items():
-        print(f"\n{sonde_name} result:")
-        print(json.dumps(data, indent=2))
-    
+    sonde=Sondes(["cpu.py", "ram.py", "disk.py"])
+    gestion=StorageManager()
 
+    parser = argparse.ArgumentParser(description="stockage")
+    parser.add_argument("--check", action="store_true")
+    args = parser.parse_args()
 
-    if sondes:
-        test_sonde = sondes[0]
-        print(f"\n1 sonde '{test_sonde}':")
-        result = test.execute_sonde(test_sonde)
-        if result:
-            print(json.dumps(result, indent=2))
-        else:
-            print("No result returned") 
-    
+    if args.check:
+        sonde.update_all_sondes()
+        return
 
-    """
+    try:
+        # Collecte et stockage des données
+        sonde.update_all_sondes()
+        time.sleep(30)
+    except KeyboardInterrupt:
+        print("Arrêt de la collecte de données.")
+        # Créer un backup final à l'arrêt
+        gestion.backup()
+
+if __name__ == "__main__":
+    main()
