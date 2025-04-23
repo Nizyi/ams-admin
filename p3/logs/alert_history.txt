@@ -1,12 +1,1 @@
 Historique des alertes 
-[2025-04-10 02:31:00] Crise dï¿½tectï¿½e: ALERT: Recent CERT alert - CERTFR-2025-ALE-003: [Mï¿½J] Vulnï¿½rabilitï¿½ dans les produits Ivanti
-[2025-04-10 02:31:00] Crise dï¿½tectï¿½e: ALERT: Recent CERT alert - CERTFR-2025-ALE-003: [Mï¿½J] Vulnï¿½rabilitï¿½ dans les produits Ivanti
-[2025-04-10 02:31:00] Crise dï¿½tectï¿½e: ALERT: Recent CERT alert - CERTFR-2025-ALE-003: [Mï¿½J] Vulnï¿½rabilitï¿½ dans les produits Ivanti
-[2025-04-10 02:31:00] Crise dï¿½tectï¿½e: ALERT: Recent CERT alert - CERTFR-2025-ALE-003: [Mï¿½J] Vulnï¿½rabilitï¿½ dans les produits Ivanti
-[2025-04-10 02:31:00] Crise dï¿½tectï¿½e: ALERT: Recent CERT alert - CERTFR-2025-ALE-003: [Mï¿½J] Vulnï¿½rabilitï¿½ dans les produits Ivanti
-[2025-04-10 02:31:00] Crise dï¿½tectï¿½e: ALERT: Recent CERT alert - CERTFR-2025-ALE-003: [Mï¿½J] Vulnï¿½rabilitï¿½ dans les produits Ivanti
-[2025-04-10 02:33:32] Crise détectée: ALERT: Recent CERT alert - CERTFR-2025-ALE-003: [MàJ] Vulnérabilité dans les produits Ivanti
-[2025-04-10 02:33:49] Crise détectée: ALERT: Recent CERT alert - CERTFR-2025-ALE-003: [MàJ] Vulnérabilité dans les produits Ivanti
-[2025-04-10 02:34:02] Crise détectée: ALERT: Recent CERT alert - CERTFR-2025-ALE-003: [MàJ] Vulnérabilité dans les produits Ivanti
-[2025-04-10 02:34:54] Crise détectée: ALERT: Recent CERT alert - CERTFR-2025-ALE-003: [MàJ] Vulnérabilité dans les produits Ivanti
-[2025-04-10 02:35:24] Crise détectée: ALERT: Recent CERT alert - CERTFR-2025-ALE-003: [MàJ] Vulnérabilité dans les produits Ivanti

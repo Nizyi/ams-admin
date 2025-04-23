@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import json
 import matplotlib.dates as mdates
 
-# Add parent directory to path to import from p2
+# import p2
 parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, parent_dir)
 from p2.storage_manager import StorageManager
