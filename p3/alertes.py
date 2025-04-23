@@ -211,19 +211,25 @@ class GraphGenerator:
                 plt.ylim(0, 100)
             
             elif sonde_name == "disk":
+                # timestamps en abscisse et l'utilisation du disque en ordonnée
+                # 'ro-' : r = rouge, o = points/cercles, - = ligne continue entre les points
                 disk_usage = [data.get('disk_usage', 0) for data in values]
                 plt.plot(timestamps, disk_usage, 'ro-', label='Disk Usage (%)')
                 plt.title('Disk Usage')
                 plt.ylabel('Disk Usage (%)')
+                #limites de l'axe Y
                 plt.ylim(0, 100)
 
             
             plt.xlabel('Time')
+            #grille de fond
             plt.grid(True, alpha=0.3)
             plt.legend()
             
+            #date formatter + pas de supperposition
             plt.gcf().autofmt_xdate()
             formatter = mdates.DateFormatter('%Y-%m-%d %H:%M')
+            #applique au graphique
             plt.gca().xaxis.set_major_formatter(formatter)
 
             plt.savefig(f'{self.output_dir}/{sonde_name}_usage.png')
