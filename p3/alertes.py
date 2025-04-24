@@ -6,6 +6,8 @@ from datetime import datetime, timedelta
 import matplotlib.pyplot as plt
 import json
 import matplotlib.dates as mdates
+import certifi
+import ssl
 
 # import p2
 parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -18,7 +20,7 @@ class Alertes:
     def __init__(self):
         self.storage_manager = StorageManager(db_name="alertes.sqlite")
         self.parser = Parser(db_name="cert_alertes.sqlite")
-        self.sonde_list =sondes = ["cpu.py", "ram.py", "disk.py"]
+        self.sonde_list =sondes = ["cpu.sh", "ram.py", "disk.py"]
         self.Sondes = Sondes(self.sonde_list)
         self.last_email_sent = None
         self.history_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'logs', 'alert_history.txt')
@@ -36,9 +38,9 @@ class Alertes:
         import locale
 
         #Linux
-        #locale.setlocale(locale.LC_TIME, 'fr_FR.UTF-8') 
+        locale.setlocale(locale.LC_TIME, 'fr_FR.UTF-8') 
         #Windows
-        locale.setlocale(locale.LC_TIME, 'fra_fra')  
+        #locale.setlocale(locale.LC_TIME, 'fra_fra')  
 
         data= self.Sondes.get_all_sondes()
         crisis= False
@@ -85,10 +87,10 @@ class Alertes:
         from email.mime.multipart import MIMEMultipart
 
         password = PASSWORD
-
+        context= ssl.create_default_context(cafile=certifi.where())
         smtp_server = "partage.univ-avignon.fr"
         smtp_port = 465
-        sender = "alerte_ams@gmail.com"
+        sender = "tom.senechal@alumni.univ-avignon.fr"
         recipients = "tom.senechal@alumni.univ-avignon.fr"
 
         subject = "ALERT: Crisis detected"
@@ -102,8 +104,8 @@ class Alertes:
 
         try:
             
-            with smtplib.SMTP_SSL(smtp_server, smtp_port) as server:
-                server.login(recipients, password)
+            with smtplib.SMTP_SSL(smtp_server, smtp_port, context=context) as server:
+                server.login(sender, password)
                 server.sendmail(sender, recipients, mail.as_string())
             print("Email sent successfully")
         except Exception as e:
@@ -268,6 +270,7 @@ def main():
     args = parser.parse_args()
 
     alertes = Alertes()
+    alertes.send_email("coucou")
 
     if args.check:
         alertes.crisis_check()

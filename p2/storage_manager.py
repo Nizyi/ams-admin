@@ -174,7 +174,7 @@ class Sondes :
                 return None
             
             if sonde_name.endswith('.py'):
-                data_ex = subprocess.check_output(['python', path])
+                data_ex = subprocess.check_output(['python3', path])
 
             elif sonde_name.endswith('.sh'):
                 data_ex = subprocess.check_output(['bash', path])
@@ -190,7 +190,7 @@ def main():
     import sys
     import argparse
 
-    sonde=Sondes(["cpu.py", "ram.py", "disk.py"])
+    sonde=Sondes(["cpu.sh", "ram.py", "disk.py"])
     gestion=StorageManager()
 
     parser = argparse.ArgumentParser(description="stockage")

@@ -1,0 +1,49 @@
+Script non trouvé: /home/tomtom/ams-admin/p1/cpu.py
+Pas de données pour cpu.
+Données bien insérées dans ram.
+données de ram insérées.
+Données bien insérées dans disk.
+données de disk insérées.
+{'cpu': None, 'ram': {'ram_usage': 12.5}, 'disk': {'disk_usage': 50.9, 'disk_free': 5.217952728271484, 'disk_total': 11.214027404785156}}
+Script non trouvé: /home/tomtom/ams-admin/p1/cpu.py
+Pas de données pour cpu.
+Données bien insérées dans ram.
+données de ram insérées.
+Données bien insérées dans disk.
+données de disk insérées.
+{'cpu': None, 'ram': {'ram_usage': 12.4}, 'disk': {'disk_usage': 50.9, 'disk_free': 5.217945098876953, 'disk_total': 11.214027404785156}}
+Script non trouvé: /home/tomtom/ams-admin/p1/cpu.py
+Pas de données pour cpu.
+Données bien insérées dans ram.
+données de ram insérées.
+Données bien insérées dans disk.
+données de disk insérées.
+{'cpu': None, 'ram': {'ram_usage': 12.4}, 'disk': {'disk_usage': 50.9, 'disk_free': 5.217945098876953, 'disk_total': 11.214027404785156}}
+Données bien insérées dans cpu.
+données de cpu insérées.
+Données bien insérées dans ram.
+données de ram insérées.
+Données bien insérées dans disk.
+données de disk insérées.
+{'cpu': {'cpu_usage': 0}, 'ram': {'ram_usage': 12.4}, 'disk': {'disk_usage': 50.9, 'disk_free': 5.217937469482422, 'disk_total': 11.214027404785156}}
+Données bien insérées dans cpu.
+données de cpu insérées.
+Données bien insérées dans ram.
+données de ram insérées.
+Données bien insérées dans disk.
+données de disk insérées.
+{'cpu': {'cpu_usage': 0}, 'ram': {'ram_usage': 12.4}, 'disk': {'disk_usage': 50.9, 'disk_free': 5.217937469482422, 'disk_total': 11.214027404785156}}
+Données bien insérées dans cpu.
+données de cpu insérées.
+Données bien insérées dans ram.
+données de ram insérées.
+Données bien insérées dans disk.
+données de disk insérées.
+{'cpu': {'cpu_usage': 0}, 'ram': {'ram_usage': 12.4}, 'disk': {'disk_usage': 50.9, 'disk_free': 5.217937469482422, 'disk_total': 11.214027404785156}}
+Données bien insérées dans cpu.
+données de cpu insérées.
+Données bien insérées dans ram.
+données de ram insérées.
+Données bien insérées dans disk.
+données de disk insérées.
+{'cpu': {'cpu_usage': 0}, 'ram': {'ram_usage': 12.4}, 'disk': {'disk_usage': 50.9, 'disk_free': 5.217937469482422, 'disk_total': 11.214027404785156}}
